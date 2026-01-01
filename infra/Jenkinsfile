@@ -1,0 +1,53 @@
+pipeline {
+  agent any
+
+  environment {
+    AWS_REGION = "us-east-1"
+    ECR_REPO   = "732555349607.dkr.ecr.us-east-1.amazonaws.com/node-app"      // e.g. 123456789012.dkr.ecr.us-east-1.amazonaws.com/node-app
+    IMAGE_TAG  = "${env.GIT_COMMIT}".take(7)
+    GITOPS_REPO = "https://github.com/<ORG>/<GITOPS_REPO>.git"
+  }
+
+  stages {
+    stage('Checkout') {
+      steps { checkout scm }
+    }
+
+    stage('Build Docker Image') {
+      steps {
+        sh """
+          docker build -t ${ECR_REPO}:${IMAGE_TAG} .
+        """
+      }
+    }
+
+    stage('Login & Push to ECR') {
+      steps {
+        sh """
+          aws --version
+          aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ECR_REPO.split('/')[0]}
+          docker push ${ECR_REPO}:${IMAGE_TAG}
+        """
+      }
+    }
+
+    stage('Update GitOps (Helm values)') {
+      steps {
+        sh """
+          rm -rf gitops
+          git clone ${GITOPS_REPO} gitops
+          cd gitops
+
+          # update tag inside values-prod.yaml
+          sed -i 's/^  tag: .*/  tag: "${IMAGE_TAG}"/' charts/node-app/values-prod.yaml
+
+          git config user.email "jenkins@local"
+          git config user.name "jenkins"
+          git add charts/node-app/values-prod.yaml
+          git commit -m "Update node-app image tag to ${IMAGE_TAG}" || true
+          git push origin main
+        """
+      }
+    }
+  }
+}
