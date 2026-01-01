@@ -30,4 +30,4 @@ yarn-error.log*
 *.terraform.*
 */.terraform
 *.terraform
-infrastructure/terraform-manifest/.terraform/modules
+infra/.terraform/modules
