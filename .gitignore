@@ -27,9 +27,9 @@ yarn-error.log*
 # .tfstate files
 *.tfstate
 *.tfstate.*
-*.terraform.*
-*/.terraform
-*.terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
 .terraform.lock.hcl
 infra/.terraform/modules
 infra/.terraform/providers
