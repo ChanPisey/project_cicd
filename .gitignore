@@ -30,4 +30,7 @@ yarn-error.log*
 *.terraform.*
 */.terraform
 *.terraform
+.terraform.lock.hcl
 infra/.terraform/modules
+infra/.terraform/providers
+.terraform.tfstate.backup
