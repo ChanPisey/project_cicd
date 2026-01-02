@@ -1,8 +1,7 @@
-resource "aws_ecr_repository" "app" {
-  name                 = var.app_name
-  image_tag_mutability = "MUTABLE"
+data "aws_ecr_repository" "app" {
+  name = var.app_name
 }
 
 output "ecr_url" {
-  value = aws_ecr_repository.app.repository_url
+  value = data.aws_ecr_repository.app.repository_url
 }

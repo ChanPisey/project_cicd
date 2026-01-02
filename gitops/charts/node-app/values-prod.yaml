@@ -1,9 +1,7 @@
 image:
   repository: 732555349607.dkr.ecr.us-east-1.amazonaws.com/node-app
   tag: "latest"
-
 service:
   type: ClusterIP
   port: 80
-
 containerPort: 3000

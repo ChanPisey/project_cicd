@@ -5,7 +5,7 @@ pipeline {
     AWS_REGION = "us-east-1"
     ECR_REPO   = "732555349607.dkr.ecr.us-east-1.amazonaws.com/node-app"      // e.g. 123456789012.dkr.ecr.us-east-1.amazonaws.com/node-app
     IMAGE_TAG  = "${env.GIT_COMMIT}".take(7)
-    GITOPS_REPO = "https://github.com/<ORG>/<GITOPS_REPO>.git"
+    GITOPS_REPO = "https://github.com/ChanPisey/project_cicd.git"
   }
 
   stages {

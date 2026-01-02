@@ -12,3 +12,4 @@ variable "app_name" {
   type    = string
   default = "node-app"
 }
+

@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/<YOUR_ORG>/<YOUR_GITOPS_REPO>.git
+    repoURL: https://github.com/ChanPisey/project_cicd.git
     targetRevision: main
     path: charts/node-app
     helm:
