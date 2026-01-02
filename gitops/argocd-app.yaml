@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: node-app
+  name: nodeapp
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/ChanPisey/project_cicd.git
     targetRevision: main
-    path: charts/nodeapp
+    path: gitops/charts/nodeapp
     helm:
       valueFiles:
         - values-prod.yaml
