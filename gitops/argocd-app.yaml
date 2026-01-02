@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/ChanPisey/project_cicd.git
     targetRevision: main
-    path: charts/node-app
+    path: charts/nodeapp
     helm:
       valueFiles:
         - values-prod.yaml
