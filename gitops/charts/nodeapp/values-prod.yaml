@@ -1,5 +1,5 @@
 image:
-  repository: 732555349607.dkr.ecr.us-east-1.amazonaws.com/nodeapp
+  repository: 732555349607.dkr.ecr.us-east-1.amazonaws.com/nodeapp:latest
   tag: "latest"
 service:
   type: ClusterIP

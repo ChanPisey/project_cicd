@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
 spec:
   project: default
+
   source:
     repoURL: https://github.com/ChanPisey/project_cicd.git
     targetRevision: main
@@ -12,9 +13,11 @@ spec:
     helm:
       valueFiles:
         - values-prod.yaml
+
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: nodeapp
+
   syncPolicy:
     automated:
       prune: true
