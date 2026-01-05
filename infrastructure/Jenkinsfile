@@ -39,11 +39,11 @@ pipeline {
           cd gitops
 
           # update tag inside values-prod.yaml
-          sed -i 's/^  tag: .*/  tag: "${IMAGE_TAG}"/' charts/node-app/values-prod.yaml
+          sed -i 's/^  tag: .*/  tag: "${IMAGE_TAG}"/' charts/nodeapp/values-prod.yaml
 
           git config user.email "jenkins@local"
           git config user.name "jenkins"
-          git add charts/node-app/values-prod.yaml
+          git add charts/nodeapp/values-prod.yaml
           git commit -m "Update node-app image tag to ${IMAGE_TAG}" || true
           git push origin main
         """
